@@ -549,8 +549,8 @@ function submitSelectQuantity()
 	var selectedCartons = parseFloat($('#selectCtn_'+serialID).val());
 	var selectedPieces = parseFloat($('#selectPcs_'+serialID).val());
 	var totalWarehousePieces = parseFloat($('#totalPcs_'+serialID).val());
-	alert((packing*selectedCartons)+selectedPieces);
-	alert(totalWarehousePieces);
+	//alert((packing*selectedCartons)+selectedPieces);
+	//alert(totalWarehousePieces);
 	if( (packing*selectedCartons)+selectedPieces <=   totalWarehousePieces)
 	{
 	$('#godownNo_'+rowID).val($('#warehouseID_'+serialID).val());

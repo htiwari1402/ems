@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="js/report.js"></script>
+<script  src='libs/jquery.js'>
+</script>
+<script  src='libs/jquery-ui.js'>
+</script>
+    <script type="text/javascript">
+      google.load('visualization', '1.0', {'packages':['corechart']});
+	  google.setOnLoadCallback(drawChart);
+    </script>
+  </head>
+
+  <body>
+ <input type="button" value="Pie Chart" id="pieChartBtn"  onclick="loadPieChart();">
+ <input type="button" value="Bar Chart" onclick="loadBarChart();">   
+ <div id="chart_div"></div>
+  </body>
+</html>

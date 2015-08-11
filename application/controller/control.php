@@ -549,7 +549,7 @@ function createSalesEntry()
 	//print_r($inputData);
 	$dao->updateSalesInvoiceAggregates($invoiceNo,$invoiceTotalWeight,$invoiceTotalLitres,$invoiceTotalAmount,$totalTax,$totalSurcharge,$invoiceTotalAmountAfterTax);
 }
-function createSalesEntry()
+function createEditSalesEntry()
 {
 	$dao = new DAO();
 	$inputData = array();

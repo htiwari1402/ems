@@ -1196,6 +1196,7 @@ function loadCreditorDetails()
 						$('#supplierAddress').val(obj.address);
 						$('#supplierShowName').val(obj.partyName);
 						$('#currencyName').val(obj.currency);
+						$('.currencySignID').val(obj.currencySign);
     		        });
 }
 function loadReportParameters()

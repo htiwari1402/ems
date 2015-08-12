@@ -787,7 +787,7 @@ class DAO
      }
      public function getSupplierDetailsByID($supplierID)
      {
-     	$sql = "select * from `ems`.`dcmaster` where `id`='$supplierID' ";
+     	$sql = "select * from `ems`.`dcmaster` `A`,`ems`.`currencymaster` `B` where `id`='$supplierID' and `A`.`currency` = `B`.`currencyName` ";
      	$return = $this->fetch($sql);
      	return $return[0];
      }

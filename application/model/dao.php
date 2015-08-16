@@ -579,7 +579,7 @@ class DAO
      				    ."`pcs` = `pcs` + $pcs, "
      				    ."`totalPcs` = `totalPcs` + $totalPcs  "
      				    ." where `itemCode`= $itemCode   "
-     			         ."and `warehouseID`=$godownNo and `batchNo`=$batchNo ";
+     			         ."and `warehouseID`=$godownNo and `batchNo`='$batchNo' ";
      		echo $sql;
      		$this->update($sql);
      	}

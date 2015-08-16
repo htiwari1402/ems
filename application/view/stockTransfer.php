@@ -171,7 +171,7 @@ foreach ($allProduct as $key=>$data)
 <hr style="visibility:hidden;clear:both;">
 <br></br>
 <p>
-<input type="button" class="nu"  id='submitInvoice'  value="Create Invoice" style="clear:both;margin-top:1%;margin:10px;" onclick="openConfirmationDialog();">
+<input type="button" class="nu"  id='submitInvoice'  value="Create Invoice" style="clear:both;margin-top:1%;margin:10px;" onclick="openConfirmationDialogStock();">
 <input type="button" class="nu"  id='submitInvoice'  value="Create Stock Transfer Invoice" style="clear:both;margin-top:4%;margin:10px;display:none;" onclick="createStockTransferInvoice();">
 <input type="button" class="nu"   id='addNextEntryButton'  value="Submit and add next entry" style="clear:both;display:none;margin-top:4%;margin:10px;" onclick="addStockTransferEntryAndNext()">
 <input type="button" class="nu"   id='finishStockEntry'  value="Finish stock transfer" style="display:none;clear:both;margin-top:4%;margin:10px;" onclick="getInventory();">
@@ -179,14 +179,14 @@ foreach ($allProduct as $key=>$data)
 </div>
 <div id='availabilityDetail'>
 </div>
-<div align="center" id="confirmDialog" style="display:none;font-size:14px;">
+<div align="center" id="confirmDialogStock" style="display:none;font-size:14px;">
 Do you want to submit and create this invoice?
 <br><br>
 <span style="color:#ff0000;">Note: Changes done could not be reverted.</span>
 <br><br><br>
-<input type="button" class="nu" value="Confirm"  onclick="submitStockTransferInvoice();$('#confirmDialog').dialog('close');">
+<input type="button" class="nu" value="Confirm"  onclick="submitStockTransferInvoice();$('#confirmDialogStock').dialog('close');">
 &nbsp;&nbsp;&nbsp;
-<input type="button" class="nu" value="Cancel"  onclick="$('#confirmDialog').dialog('close');">
+<input type="button" class="nu" value="Cancel"  onclick="$('#confirmDialogStock').dialog('close');">
 </div>
 <script>
 function getTypeIDForType()

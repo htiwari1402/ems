@@ -218,21 +218,21 @@ $itemCounts++;
 <input type="button" class="nu"  id='submitInvoice'  value="Create Invoice" style="clear:both;display:none;margin-top:4%;margin:10px;" onclick="createInvoice();">
 <input type="button" class="nu"   id='addNextEntryButton'  value="Add next entry" style="clear:both;display:none;margin-top:4%;margin:10px;" onclick="addSalesEntryAndNext();">
 <input type="button" class="nu"   id='finishSalesEntry'  value="Finish sales entry" style="clear:both;display:none;margin-top:4%;margin:10px;" onclick="getSalesReportCurrent();">
-<input type="button" class="nu"  id='submitInvoice'  value="Create Invoice" style="clear:both;margin-top:1%;margin:10px;" onclick="openConfirmationDialog();">
+<input type="button" class="nu"  id='submitInvoice'  value="Create Invoice" style="clear:both;margin-top:1%;margin:10px;" onclick="openConfirmationDialogEdit();">
 </p>
 </div>
 <div id='testCode'>
 </div>
 <div id='availabilityDetail'>
 </div>
-<div align="center" id="confirmDialog" style="display:none;font-size:14px;">
+<div align="center" id="confirmDialogEdit" style="display:none;font-size:14px;">
 Do you want to submit and create this invoice?
 <br><br>
 <span style="color:#ff0000;">Note: Changes done could not be reverted.</span>
 <br><br><br>
-<input type="button" class="nu" value="Confirm"  onclick="submitEditSalesInvoice();$('#confirmDialog').dialog('close');">
+<input type="button" class="nu" value="Confirm"  onclick="submitEditSalesInvoice();$('#confirmDialogEdit').dialog('close');">
 &nbsp;&nbsp;&nbsp;
-<input type="button" class="nu" value="Cancel"  onclick="$('#confirmDialog').dialog('close');">
+<input type="button" class="nu" value="Cancel"  onclick="$('#confirmDialogEdit').dialog('close');">
 </div>
 
 

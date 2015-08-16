@@ -478,6 +478,7 @@ function getInventoryManagement()
 }
 function displayAvailabilityDetail(rowID)
 {
+	$('#availabilityDetail').html('');
 	var itemCode = $('#itemCode_'+rowID).val();
 	var state = $('#state').val();
 	//alert(itemCode);
@@ -786,8 +787,8 @@ function submitStockTransferInvoice()
 		        	{
 		        	    alert('You have entered totalPcs that exceeds availability in warehouse');
 		        	}
-		        else{
-		        		        
+		        else
+		        {	        		        
     var invoiceNo = $('#invoiceNo').val();
 	invoiceNo = invoiceNo.trim();
 	var from = $('#fromWareHouse').val();
@@ -802,10 +803,7 @@ function submitStockTransferInvoice()
 			    						'./application/controller/control.php', postData2,
 			    						function(data2)
 			    						{
-			    						//	alert(data2);
-			    							//$('#main').html(data2);
 			    							getStockTransferReportCurrent();
-			    							//$('#testCode').html(data);
 			    						});
 			       });
 		        }
@@ -1289,6 +1287,30 @@ function getPartyInventory()
 			}
 	);
 }
+function openConfirmationDialogStock()
+{
+	$('#confirmDialogStock').dialog({
+	       autoOpen:false,
+	       width:500,
+	       height:150,
+	       title:'Loading',
+	       modal:true
+	    });
+	$('.ui-dialog-titlebar').hide();
+	$('#confirmDialogStock').dialog('open');	
+}
+function openConfirmationDialogEditStock()
+{
+	$('#confirmDialogEditStock').dialog({
+	       autoOpen:false,
+	       width:500,
+	       height:150,
+	       title:'Loading',
+	       modal:true
+	    });
+	$('.ui-dialog-titlebar').hide();
+	$('#confirmDialogEditStock').dialog('open');	
+}
 function openConfirmationDialog()
 {
 	$('#confirmDialog').dialog({
@@ -1300,6 +1322,18 @@ function openConfirmationDialog()
 	    });
 	$('.ui-dialog-titlebar').hide();
 	$('#confirmDialog').dialog('open');	
+}
+function openConfirmationDialogEdit()
+{
+	$('#confirmDialogEdit').dialog({
+	       autoOpen:false,
+	       width:500,
+	       height:150,
+	       title:'Loading',
+	       modal:true
+	    });
+	$('.ui-dialog-titlebar').hide();
+	$('#confirmDialogEdit').dialog('open');	
 }
 function generateBrandWiseReport()
 {

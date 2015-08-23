@@ -30,7 +30,7 @@ background-color:#FAFFBD;
 //print_r($hoWarehouse);
 ?>
 <div align="center">
-<input type="hidden" name="rowCount" value=1 id='rowCount'>
+
 <form id='stockPurchaseForm' >
 <table style="width:45%;margin-top:2%;margin-left:2%;float:left;display:inline-block;border:0px solid #000000" >
 <tr class='oddTr'>
@@ -225,10 +225,13 @@ foreach ($hoWarehouse as $key=>$data)
 <td valign="top"><span class='currencySignID'></span><input type="text"  class='smallInput' name="amountCurr[]" id='amountCurr_<?php echo $itemCounts;?>'  onfocus='calculateAmountCurr(<?php echo $itemCounts;?>);'     value="<?php  echo $salesData['amountCurr']; ?>"></td>
 <td valign="top"><span>Rs.</span><input type="text"  class='smallInput' name="amount[]" id='amount_<?php echo $itemCounts;?>'  onfocus='calculateAmountInr(<?php echo $itemCounts;?>);'    value="<?php  echo $salesData['amount']; ?>"></td>
 </tr>
-<?php } 
+<?php
 $itemCounts++;
+} 
+
 ?>
 </table>
+<input type="hidden" name="rowCount" value="<?php  echo $itemCounts; ?>" id='rowCount'>
 </form>
 <input type='button' value='Add row +'  class='nu'  onclick="addAnotherRowSP('salesEntryTable');"  style="clear:both;display:block;">
 <hr style="visibility:hidden;clear:both;">

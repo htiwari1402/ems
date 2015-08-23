@@ -1353,7 +1353,14 @@ function generateStateWiseReport()
 function editStockTransferInvoice(id)
 {
      var postData = 'a=getEditStockTransfer&invoiceNo='+id;
-     action(postData,"main");
+     $.post("./application/controller/control.php"
+    		     ,postData,
+    		     function(data)
+    		     {
+    		    	 $('#main').html(data);
+    		    	 getTypeIDForTypeForEdit();
+    		     });
+     
 }
 function editStockPurchaseInvoice(id)
 {
@@ -1364,6 +1371,16 @@ function editSalesInvoice(id)
 {
    var postData  = 'a=editSalesEntry&invoiceNo='+id;
    action(postData,'main');
+}
+function getTypeIDForTypeForEdit()
+{
+var type= $('#type').val();
+$.post("./application/controller/control.php",
+				"a=getTypeIDByTypeForEdit&type="+type+"&typeID="+$('#typeIDForEdit').val(),
+				function(data)
+				{
+		              $('#typeID').html(data);
+				});
 }
 
 

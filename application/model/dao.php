@@ -864,6 +864,12 @@ class DAO
      	$finalReturn = $this->getPartyDetails($return[0]['type'],$return[0]['partyName']);
      	return $finalReturn;
      }
+     public function getTypeByWarehouse($warehouseID)
+     {
+     	$sql = "select `type`, `partyName` from `ems`.`warehousemaster` where `warehouseID` =".$warehouseID;
+     	$return = $this->fetch($sql);
+     	return $return[0];
+     }
      public function getTransporterNameByID($transporterID)
      {
      	$sql = "select `name` from `ems`.`transportermaster` where `transID`=".$transporterID;
@@ -911,5 +917,6 @@ class DAO
      	$result = $this->fetch($sql);
      	return $result;
      }
+    
 }
 ?>

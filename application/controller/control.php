@@ -900,6 +900,15 @@ function  getTypeIDByType()
 	$seletedTypeID = $dao->getTypeIDByType($type);
 	include "../view/typeIDSelectOptions.php";
 }
+function  getTypeIDByTypeForEdit()
+{
+	$type = $_REQUEST['type'];
+	$typeID = $_REQUEST['typeID'];
+	$toPartyDetails['typeID'] = $typeID;
+	$dao = new DAO();
+	$seletedTypeID = $dao->getTypeIDByType($type);
+	include "../view/typeIDSelectOptionsForEdit.php";
+}
 function loadCurrencySign()
 {
 	$dao =new DAO();
@@ -1266,6 +1275,7 @@ function getEditStockTransfer()
 	$_SESSION['editStockTransferInvoiceDetail'] = $invoiceDetails;
 	$_SESSION['editStockTransferSalesDetail'] = $salesDetails;
 	$toPartyName = $dao->getPartyNameByWarehouse($invoiceDetails['to']);
+	$toPartyDetails= $dao->getTypeByWarehouse($invoiceDetails['to']);
 	$allWarehouse = $dao->getAllWarehouse();
 	$allTransporter = $dao->getAllTransporter();
 	$allEmployees = $dao->getAllEmployees();

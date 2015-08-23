@@ -37,7 +37,18 @@ From  <?php echo $_SESSION['partyName']; ?>
 <input type="hidden" id = 'fromWareHouse' name='from'  value="<?php  echo $_SESSION['warehouseSummary'][0]['warehouseID'];?>" >
 &nbsp;&nbsp;&nbsp;&nbsp;
 To 
-:  <?php echo $toPartyName; ?>
+:  <?php //echo $toPartyName; ?>
+Select Type: 
+<select id="type" onchange="getTypeIDForTypeForEdit();">
+<option value="">select</option>
+<option value="Branch" <?php  if($toPartyDetails['type']=='Branch'){ echo "selected"; }?> >Branch</option>
+<option value="HO" <?php  if($toPartyDetails['type']=='HO'){ echo "selected"; }?> >HO</option>
+<option value="CF"  <?php  if($toPartyDetails['type']=='CF'){ echo "selected"; }?> >C&F</option>
+</select>
+Select Name:
+<select id="typeID" onchange="getWarehouseIDByTypeAndTypeID();">
+</select>
+<input type="hidden" id="typeIDForEdit" value="<?php  echo $toPartyDetails['partyName']; ?>" >
 <input type="hidden" name="to" id="to" value="<?php  echo $invoiceDetails['to']; ?>">
 <input type="hidden" name="state" id="state" value="<?php  echo $invoiceDetails['state']?>">
 <hr style="visibility: hidden">
@@ -144,9 +155,9 @@ foreach ($allProduct as $key=>$data)
 <td valign="top"><input type="text"  class='smallInput' name="exFreeQty[]"></td>
 <td valign="top"><input type="text"  class='smallInput' name="ctn[]" id='ctn_<?php echo $itemCounts;?>' value="<?php  echo $itemData['ctn']; ?>"></td>
 <td valign="top"><input type="text"  class='smallInput' name="pcs[]" id='pcs_<?php echo $itemCounts;?>' value="<?php  echo $itemData['pcs']; ?>"></td>
-<td valign="top"><input type="text"   class='smallInput' name="totalPcs[]" id='totalPcs_<?php echo $itemCounts;?>' onfocus='calculateTotalPcs(1);' value="<?php  echo $itemData['totalPcs']; ?>"></td>
+<td valign="top"><input type="text"   class='smallInput' name="totalPcs[]" id='totalPcs_<?php echo $itemCounts;?>' onfocus='calculateTotalPcs(<?php echo $itemCounts;?>);' value="<?php  echo $itemData['totalPcs']; ?>"></td>
 <td valign="top"><input type="text"  class='smallInput' name="rate[]" id="rate_<?php echo $itemCounts;?>" value="<?php  echo $itemData['rate']; ?>"></td>
-<td valign="top"><input type="text"  class='smallInput' name="amount[]" id='amount_<?php echo $itemCounts;?>' onfocus='calculateAmount(1);' value="<?php  echo $itemData['amount']; ?>"></td>
+<td valign="top"><input type="text"  class='smallInput' name="amount[]" id='amount_<?php echo $itemCounts;?>' onfocus='calculateAmount(<?php echo $itemCounts;?>);' value="<?php  echo $itemData['amount']; ?>"></td>
 </tr>
 <?php 
 $itemCounts++;
@@ -179,15 +190,15 @@ Do you want to submit and create this invoice?
 <input type="button" class="nu" value="Cancel"  onclick="$('#confirmDialogEditStock').dialog('close');">
 </div>
 <script>
-function getTypeIDForType()
+function getTypeIDForTypeForEdit()
 {
-var type= $('#type').val();
-$.post("./application/controller/control.php",
-				"a=getTypeIDByType&type="+type,
-				function(data)
-				{
-		              $('#typeID').html(data);
-				});
+	var type= $('#type').val();
+	$.post("./application/controller/control.php",
+					"a=getTypeIDByTypeForEdit&type="+type+"&typeID="+$('#typeIDForEdit').val(),
+					function(data)
+					{
+			              $('#typeID').html(data);
+					});
 }
 function getWarehouseIDByTypeAndTypeID()
 {

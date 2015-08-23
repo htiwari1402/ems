@@ -165,7 +165,7 @@ $itemCounts++;
 </p>
 </div>
 
-<input type="hidden" name="rowCount" value='<?php echo($itemCounts-1); ?>' id='rowCount'>
+<input type="hidden" name="rowCount" value='<?php echo($itemCounts); ?>' id='rowCount'>
 
 <div id='availabilityDetail'>
 </div>

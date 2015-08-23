@@ -155,7 +155,7 @@ foreach ($allEmployees as $key=>$data)
 </tr>
 </table>
 </form>
-<input type="hidden" name="rowCount" value=1 id='rowCount'>
+
 <form id='salesEntryForm' >
 <table id='salesEntryTable'  style="width:90%;margin-top:2%;margin-left:5%;float:left;font-size:12px;" cellspacing="0" >
 <tr class='oddTr'>
@@ -210,6 +210,7 @@ $itemCounts++;
 }
 ?>
 </table>
+<input type="hidden" name="rowCount" value="<?php  echo $itemCounts; ?>" id='rowCount'>
 </form>
 <input type='button' value='Add row +'  class='nu'  onclick="addAnotherRow('salesEntryTable');"  style="clear:both;display:block;float:left;margin-left:5%;">
 <hr style="visibility:hidden;clear:both;">

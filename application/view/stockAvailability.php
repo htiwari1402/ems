@@ -56,8 +56,8 @@ if($data['itemCode'] == $itemCode && $data['totalPcs'] > 0)
 <td><?php echo $data['totalPcs']; ?>
 <input type="hidden"  id="totalPcs_<?php echo $serial; ?>" value="<?php echo $data['totalPcs']; ?>">
 </td>
-<td><input type='text'  class="selectCtnClass"  id="selectCtn_<?php echo $serial;?>"  onchange="disableAllOtherTextBox(<?php echo $serial;?>);"  name="<?php echo $data['warehouseID'];?>" value="" ></td>
-<td><input type='text'  class="selectCtnClass"  id="selectPcs_<?php echo $serial;?>"   onchange="disableAllOtherTextBox(<?php echo $serial;?>);" name="<?php echo $data['warehouseID'];?>" value="" ></td>
+<td><input type='text'  class="selectCtnClass"  id="selectCtn_<?php echo $serial;?>"  onchange="disableAllOtherTextBox(<?php echo $serial;?>);"  name="<?php echo $data['warehouseID'];?>" value="0"  onfocus="$(this).val('');"></td>
+<td><input type='text'  class="selectCtnClass"  id="selectPcs_<?php echo $serial;?>"   onchange="disableAllOtherTextBox(<?php echo $serial;?>);" name="<?php echo $data['warehouseID'];?>" value="0"  onfocus="$(this).val('');" ></td>
 </tr>
 <?php 
 $serial++;

@@ -202,7 +202,152 @@ class ReportEngine
     	$return = $this->fetch($preSql.$stateSQL.$brandSQL.$catSQL.$fromSQL.$toSQL.$postSql);
     	return $return;
     }
-    
+    public function getCityWiseSalesData($inputData)
+    {
+    	//echo "<pre>";
+    	//print_r($inputData);
+    	$state = $inputData['state'];
+    	$city = $inputData['city'];
+    	$brand = $inputData['brand'];
+    	$category = $inputData['category'];
+    	$fromDate = $inputData['fromDate'];
+    	$toDate = $inputData['toDate'];
+    	$preSql = "select `X`.`city`,
+    			sum(`X`.`amount`) as `amount`,
+    			 sum(`X`.`litres`) as `litre`
+    			  from
+    			( select `A`.`itemCode`, `C`.`date`, `B`.`brand`, `B`.`productCategory`,`D`.`city`,
+    			sum(`A`.`amountAfterTax`) as `amount`, sum(`A`.`totalLitres`) as `litres`
+    			from `ems`.`salesentry` `A` join `ems`.`productmaster` `B` on
+    			 `A`.`itemCode` = `B`.`itemCode` join `ems`.`salesinvoice` `C` on
+    			`A`.`invoiceNo`= `C`.`invoiceNo` join `ems`.`distributormaster` `D`
+    			on `D`.`distID` = `C`.`partyName`
+    			 where 1=1";
+    	if(strlen(trim($state)) > 1 )
+    	{
+    		$stateSQL = " and `C`.`state` = '$state' ";
+    	}
+    	else
+    	{
+    		$stateSQL = " ";
+    		}
+    		if(strlen(trim($brand)) > 1 )
+    		{
+    		$brandSQL = " and `B`.`brand` = '$brand' ";
+    		}
+    		else
+    		{
+    		$brandSQL = " ";
+    	}
+    	if(strlen(trim($city)) > 1 )
+    	{
+    		$citySQL = " and `D`.`city` = '$city' ";
+    	}
+    	else
+    	{
+    		$citySQL = " ";
+    	}
+    	if(strlen(trim($category)) > 1 )
+    	{
+    	$catSQL = " and `B`.`productCategory` = '$category' ";
+    	}
+    		else
+    			{
+    			$catSQL = " ";
+    	}
+    			if( strlen($fromDate) >= 8)
+    	{
+    	$fromSQL = " and `C`.`date` > '$fromDate' ";
+    	}
+    	else
+    	{
+    	$fromSQL = " ";
+    	}
+    	if(strlen($toDate) >= 8)
+    	{
+    	$toSQL = " and `C`.`date` <= '$toDate' ";
+    	}
+    	else
+    	{
+    	$toSQL = " ";
+    	}
+    	$postSql =	"group by `A`.`itemCode`,`C`.`date` )
+    	X group by `city`";
+    	$return = $this->fetch($preSql.$stateSQL.$citySQL.$brandSQL.$catSQL.$fromSQL.$toSQL.$postSql);
+    	//echo $preSql.$stateSQL.$brandSQL.$catSQL.$fromSQL.$toSQL.$postSql;
+        	return $return;
+    	}
+    	public function getCityWiseSalesDataDateWise($inputData)
+    	{
+    	$state = $inputData['state'];
+    	$city = $inputData['city'];
+    	$brand = $inputData['brand'];
+    	$category = $inputData['category'];
+    	$fromDate = $inputData['fromDate'];
+    	$toDate = $inputData['toDate'];
+    	$preSql = "select `X`.`city`,
+    	sum(`X`.`amount`) as `amount`,
+    	sum(`X`.`litres`) as `litre`,
+    	MONTH(`X`.`date` ) as `month` from
+    	( select `A`.`itemCode`, `C`.`date`, `B`.`brand`, `B`.`productCategory`,`D`.`city`,
+    			sum(`A`.`amountAfterTax`) as `amount`, sum(`A`.`totalLitres`) as `litres`
+    			from `ems`.`salesentry` `A` join `ems`.`productmaster` `B` on
+    			 `A`.`itemCode` = `B`.`itemCode` join `ems`.`salesinvoice` `C` on
+    			`A`.`invoiceNo`= `C`.`invoiceNo` join `ems`.`distributormaster` `D`
+    			on `D`.`distID` = `C`.`partyName`  where 1=1 ";
+    	if(strlen(trim($state)) > 1 )
+    	{
+    		$stateSQL = " and `C`.`state` = '$state' ";
+    	}
+    	else
+    	{
+    	$stateSQL = " ";
+    	}
+    		if(strlen(trim($brand)) > 1 )
+    		{
+    	$brandSQL = " and `B`.`brand` = '$brand' ";
+    	}
+    		else
+    			{
+    			$brandSQL = " ";
+    	}
+    	if(strlen(trim($city)) > 1 )
+    	{
+    		$citySQL = " and `D`.`city` = '$city' ";
+    	}
+    	else
+    	{
+    		$citySQL = " ";
+    	}
+    	if(strlen(trim($category)) > 1 )
+    	{
+    		$catSQL = " and `B`.`productCategory` = '$category' ";
+    	}
+    		else
+    		{
+    			$catSQL = " ";
+    		}
+    		if( strlen($fromDate) >= 8)
+    	{
+    	$fromSQL = " and `C`.`date` > '$fromDate' ";
+    	}
+    	else
+    	{
+    	$fromSQL = " ";
+    	}
+    	if(strlen($toDate) >= 8)
+    		{
+    		$toSQL = " and `C`.`date` <= '$toDate' ";
+    	}
+    	else
+    	{
+    	$toSQL = " ";
+    	}
+    		$postSql =	"group by `A`.`itemCode`,`C`.`date` )
+    		X group by `city`,MONTH(`date`)";
+    		$return = $this->fetch($preSql.$stateSQL.$brandSQL.$catSQL.$fromSQL.$toSQL.$postSql);
+    		return $return;
+    	}
     public function getProductWiseSalesData($inputData)
     {
     	//echo "<pre>";

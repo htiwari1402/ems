@@ -1182,6 +1182,46 @@ function generateBrandWiseReport()
 	$inputGraphDataAmount = json_encode($totalArrAmount);
 	include "../view/generatedBrandWiseReport.php";
 }
+function generateCityWiseReport()
+{
+	$re = new ReportEngine();
+	$dao = new DAO();
+	//$allBrand = $dao->getAllBrands();
+	$dataSet = $re->getCityWiseSalesData($_REQUEST);
+	$dataSetDateWise = $re->getCityWiseSalesDataDateWise($_REQUEST);
+	$arrLitre = array();
+	$totalArrLitres = array();
+	$arrAmount = array();
+	$totalArrAmount = array();
+	$allCity = array();
+	$allCityAl = array();
+	foreach($dataSetDateWise as $key=>$data)
+	{
+		$arrLitre[$data['month']][$data['city']] = $data['litre'];
+		$arrLitre[$data['month']]['month'] = $data['month'];
+		$allCity[$data['city']] = 1;
+	}
+	foreach($allCity as $key=>$data)
+	{
+		$allCityAl[] = array("city"=>$key);
+	}
+	foreach($arrLitre as $key=>$data)
+	{
+		$totalArrLitres[ ] = $data;
+	}
+	foreach($dataSetDateWise as $key=>$data)
+	{
+		$arrAmount[$data['month']][$data['city']] = $data['amount'];
+		$arrAmount[$data['month']]['month'] = $data['month'];
+	}
+	foreach($arrAmount as $key=>$data)
+	{
+		$totalArrAmount[ ] = $data;
+	}
+	$inputGraphDataLitres = json_encode($totalArrLitres);
+	$inputGraphDataAmount = json_encode($totalArrAmount);
+	include "../view/generatedCityWiseReport.php";
+}
 function generateProductWiseReport()
 {
 	$re = new ReportEngine();

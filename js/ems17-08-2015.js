@@ -1340,6 +1340,11 @@ function generateBrandWiseReport()
 	var postData = "a=generateBrandWiseReport&"+$('#brandWiseReportForm').serialize();
 	action(postData,"mainReport");
 }
+function generateCityWiseReport()
+{
+	var postData = "a=generateCityWiseReport&"+$('#cityWiseReportForm').serialize();
+	action(postData,"mainReportCity");
+}
 function generateProductWiseReport()
 {
 	var postData = "a=generateProductWiseReport&"+$('#productWiseReportForm').serialize();

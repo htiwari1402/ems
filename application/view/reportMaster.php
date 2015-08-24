@@ -3,6 +3,10 @@
     <li><a href="#tabs-1">Brand Wise</a></li>
     <li><a href="#tabs-2">Product Wise</a></li>
     <li><a href="#tabs-3">State Wise</a></li>
+    <li><a href="#tabs-4">City Wise</a></li>
+    <li><a href="#tabs-5">Distributor Wise</a></li>
+    <li><a href="#tabs-6">Category Wise</a></li>
+    <li><a href="#tabs-7">Sub Category Wise</a></li>
   </ul>
   <div id="tabs-1">
 <?php include "brandWiseReport.php"; ?>
@@ -12,6 +16,18 @@
   </div>
   <div id="tabs-3">
 <?php include "stateWiseReport.php"; ?>
+  </div>
+  <div id="tabs-4">
+<?php include "cityWiseReport.php"; ?>
+  </div>
+    <div id="tabs-5">
+<?php include "distWiseReport.php"; ?>
+  </div>
+    <div id="tabs-6">
+<?php include "categoryWiseReport.php"; ?>
+  </div>
+   <div id="tabs-7">
+<?php include "subCategoryWiseReport.php"; ?>
   </div>
 </div>
 

@@ -1355,6 +1355,11 @@ function generateCategoryWiseReport()
 	var postData = "a=generateCategoryWiseReport&"+$('#categoryWiseReportForm').serialize();
 	action(postData,"mainReportCategory");
 }
+function generateSCWiseReport()
+{
+	var postData = "a=generateSCWiseReport&"+$('#scWiseReportForm').serialize();
+	action(postData,"mainReportSC");
+}
 function generateProductWiseReport()
 {
 	var postData = "a=generateProductWiseReport&"+$('#productWiseReportForm').serialize();

@@ -876,6 +876,7 @@ function getReportMaster()
 	$allStates = $dao->getAllStates();
 	$allProducts = $dao->getAllProducts();
 	$alCategories = $dao->getAllCategories();
+	$allSC = $dao->getAllSubCategories();
 	$allBrand = $dao->getAllBrands();
 	$allDist = $dao->getAllDistributors();
 	include "../view/reportMaster.php";
@@ -1302,6 +1303,46 @@ function generateCategoryWiseReport()
 	$inputGraphDataLitres = json_encode($totalArrLitres);
 	$inputGraphDataAmount = json_encode($totalArrAmount);
 	include "../view/generatedCategoryWiseReport.php";
+}
+function generateSCWiseReport()
+{
+	$re = new ReportEngine();
+	$dao = new DAO();
+	//$allBrand = $dao->getAllBrands();
+	$dataSet = $re->getSCWiseSalesData($_REQUEST);
+	$dataSetDateWise = $re->getSCWiseSalesDataDateWise($_REQUEST);
+	$arrLitre = array();
+	$totalArrLitres = array();
+	$arrAmount = array();
+	$totalArrAmount = array();
+	$allCity = array();
+	$allCityAl = array();
+	foreach($dataSetDateWise as $key=>$data)
+	{
+		$arrLitre[$data['month']][$data['subCategory']] = $data['litre'];
+		$arrLitre[$data['month']]['month'] = $data['month'];
+		$allCity[$data['subCategory']] = 1;
+	}
+	foreach($allCity as $key=>$data)
+	{
+		$allCityAl[] = array("city"=>$key);
+	}
+	foreach($arrLitre as $key=>$data)
+	{
+		$totalArrLitres[ ] = $data;
+	}
+	foreach($dataSetDateWise as $key=>$data)
+	{
+		$arrAmount[$data['month']][$data['subCategory']] = $data['amount'];
+		$arrAmount[$data['month']]['month'] = $data['month'];
+	}
+	foreach($arrAmount as $key=>$data)
+	{
+		$totalArrAmount[ ] = $data;
+	}
+	$inputGraphDataLitres = json_encode($totalArrLitres);
+	$inputGraphDataAmount = json_encode($totalArrAmount);
+	include "../view/generatedSCWiseReport.php";
 }
 function generateProductWiseReport()
 {

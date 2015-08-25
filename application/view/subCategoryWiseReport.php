@@ -8,7 +8,7 @@
 SUB CATEGORY WISE REPORT
 </div>
 <br><br>
-<form id="brandWiseReportForm">
+<form id="scWiseReportForm">
 State: 
 <select name="state">
 <option value="0">All India</option>
@@ -51,6 +51,20 @@ foreach($alCategories as $key=>$data)
 }?>
 </select>
 &nbsp;&nbsp;&nbsp;&nbsp;
+Sub Category:
+<select name="sc">
+<option value="0">All</option>
+<?php 
+foreach($allSC as $key=>$data)
+{
+?>
+<option value="<?php  echo $data['subCategory']; ?>">
+<?php  echo $data['subCategory']; ?>
+</option>
+<?php 
+}?>
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;
 From:
 <input type="text" class="date" name="fromDate" >
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -59,8 +73,8 @@ To:
 <br>
 </form>
 <br>
-<input type="button" class="nu" value="Generate Report" onclick="generateBrandWiseReport();">
+<input type="button" class="nu" value="Generate Report" onclick="generateSCWiseReport();">
 
 <br><br>
-<div id="mainReport" style="width:100%;">
+<div id="mainReportSC" style="width:100%;">
 </div>

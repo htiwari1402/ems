@@ -923,6 +923,12 @@ class DAO
      	$return = $this->fetch($sql);
      	return $return;
      }
+     public function getAllSubCategories()
+     {
+     	$sql = "select * from `ems`.`subcategorymaster`";
+     	$return = $this->fetch($sql);
+     	return $return;
+     }
     
 }
 ?>

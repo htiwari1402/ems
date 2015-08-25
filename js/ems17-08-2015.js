@@ -1345,6 +1345,16 @@ function generateCityWiseReport()
 	var postData = "a=generateCityWiseReport&"+$('#cityWiseReportForm').serialize();
 	action(postData,"mainReportCity");
 }
+function generateDistWiseReport()
+{
+	var postData = "a=generateDistWiseReport&"+$('#distWiseReportForm').serialize();
+	action(postData,"mainReportDist");
+}
+function generateCategoryWiseReport()
+{
+	var postData = "a=generateCategoryWiseReport&"+$('#categoryWiseReportForm').serialize();
+	action(postData,"mainReportCategory");
+}
 function generateProductWiseReport()
 {
 	var postData = "a=generateProductWiseReport&"+$('#productWiseReportForm').serialize();

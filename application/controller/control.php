@@ -877,6 +877,7 @@ function getReportMaster()
 	$allProducts = $dao->getAllProducts();
 	$alCategories = $dao->getAllCategories();
 	$allBrand = $dao->getAllBrands();
+	$allDist = $dao->getAllDistributors();
 	include "../view/reportMaster.php";
 }
 function getStateByCountry()
@@ -1221,6 +1222,86 @@ function generateCityWiseReport()
 	$inputGraphDataLitres = json_encode($totalArrLitres);
 	$inputGraphDataAmount = json_encode($totalArrAmount);
 	include "../view/generatedCityWiseReport.php";
+}
+function generateDistWiseReport()
+{
+	$re = new ReportEngine();
+	$dao = new DAO();
+	//$allBrand = $dao->getAllBrands();
+	$dataSet = $re->getDistWiseSalesData($_REQUEST);
+	$dataSetDateWise = $re->getDistWiseSalesDataDateWise($_REQUEST);
+	$arrLitre = array();
+	$totalArrLitres = array();
+	$arrAmount = array();
+	$totalArrAmount = array();
+	$allCity = array();
+	$allCityAl = array();
+	foreach($dataSetDateWise as $key=>$data)
+	{
+		$arrLitre[$data['month']][$data['name']] = $data['litre'];
+		$arrLitre[$data['month']]['month'] = $data['month'];
+		$allCity[$data['name']] = 1;
+	}
+	foreach($allCity as $key=>$data)
+	{
+		$allCityAl[] = array("city"=>$key);
+	}
+	foreach($arrLitre as $key=>$data)
+	{
+		$totalArrLitres[ ] = $data;
+	}
+	foreach($dataSetDateWise as $key=>$data)
+	{
+		$arrAmount[$data['month']][$data['name']] = $data['amount'];
+		$arrAmount[$data['month']]['month'] = $data['month'];
+	}
+	foreach($arrAmount as $key=>$data)
+	{
+		$totalArrAmount[ ] = $data;
+	}
+	$inputGraphDataLitres = json_encode($totalArrLitres);
+	$inputGraphDataAmount = json_encode($totalArrAmount);
+	include "../view/generatedDistWiseReport.php";
+}
+function generateCategoryWiseReport()
+{
+	$re = new ReportEngine();
+	$dao = new DAO();
+	//$allBrand = $dao->getAllBrands();
+	$dataSet = $re->getCategoryWiseSalesData($_REQUEST);
+	$dataSetDateWise = $re->getCategoryWiseSalesDataDateWise($_REQUEST);
+	$arrLitre = array();
+	$totalArrLitres = array();
+	$arrAmount = array();
+	$totalArrAmount = array();
+	$allCity = array();
+	$allCityAl = array();
+	foreach($dataSetDateWise as $key=>$data)
+	{
+		$arrLitre[$data['month']][$data['productCategory']] = $data['litre'];
+		$arrLitre[$data['month']]['month'] = $data['month'];
+		$allCity[$data['productCategory']] = 1;
+	}
+	foreach($allCity as $key=>$data)
+	{
+		$allCityAl[] = array("city"=>$key);
+	}
+	foreach($arrLitre as $key=>$data)
+	{
+		$totalArrLitres[ ] = $data;
+	}
+	foreach($dataSetDateWise as $key=>$data)
+	{
+		$arrAmount[$data['month']][$data['productCategory']] = $data['amount'];
+		$arrAmount[$data['month']]['month'] = $data['month'];
+	}
+	foreach($arrAmount as $key=>$data)
+	{
+		$totalArrAmount[ ] = $data;
+	}
+	$inputGraphDataLitres = json_encode($totalArrLitres);
+	$inputGraphDataAmount = json_encode($totalArrAmount);
+	include "../view/generatedCategoryWiseReport.php";
 }
 function generateProductWiseReport()
 {

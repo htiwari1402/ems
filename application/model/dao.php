@@ -917,6 +917,12 @@ class DAO
      	$result = $this->fetch($sql);
      	return $result;
      }
+     public function getAllDistributors()
+     {
+     	$sql = "select * from `ems`.`distributormaster`";
+     	$return = $this->fetch($sql);
+     	return $return;
+     }
     
 }
 ?>

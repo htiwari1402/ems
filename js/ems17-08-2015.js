@@ -956,7 +956,13 @@ function getReportMaster()
 {
 	var postData = "a=getReportMaster";
 	action(postData,"main");
-	//loadMenu("reportMasterMenu");
+	loadMenu("reportMasterMenu");
+}
+function getStockReportMaster()
+{
+	var postData = "a=getStockReportMaster";
+	action(postData,"main");
+	loadMenu("reportMasterMenu");
 }
 function getReportMaster_old()
 {
